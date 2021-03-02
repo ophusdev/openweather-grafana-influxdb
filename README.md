@@ -5,7 +5,7 @@ Fetch weather data for latitude and longitude and store into InfluxDB database a
 
 # Result
 
-![Dashboard Grafana](https://raw.githubusercontent.com/ophusdev/openweather-grafana-influxdb/master/dashboard.png)
+![Dashboard Grafana](https://raw.githubusercontent.com/ophusdev/openweather-grafana-influxdb/main/dashboard.png?token=AMWPDX2EKU33EYOPP7IJDALAHZ2DM)
 
 
 
