@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+  influxdb:
+    image: influxdb:2.0.4
+    container_name: influxdb
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+      - "8090:8090"
+    environment:
+      reporting-disabled: 1
+    volumes:
+      # docker volume create influxdb-storage
+      - influxdb-storage:/var/lib/influxdb
+
+  grafana:
+    image: grafana/grafana:7.4.3-ubuntu
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    env_file:
+      - 'env.grafana'
+    user: "0"
+    links:
+      - influxdb
+    volumes:
+      # docker volume create grafana-storage
+      - grafana-storage:/var/lib/grafana
+
+  api-service:
+      build: ./api/
+      volumes:
+        - .:/code
+      ports: 
+        - ${FLASK_PORT}:${FLASK_PORT}
+      environment: 
+        PORT: ${FLASK_PORT}
+        FLASK_DEBUG: ${FLASK_DEBUG}
+      depends_on:
+        - influxdb
+
+volumes:
+  grafana-storage:
+    external: true
+  influxdb-storage:
+    external: true
