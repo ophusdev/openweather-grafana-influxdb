@@ -2,6 +2,7 @@ from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 from datetime import datetime
 
+
 class StoreData:
     def __init__(self, url, org, token):
         self.url = url
@@ -21,12 +22,11 @@ class StoreData:
 
         if start:
             start_date = start
-        
+
         if stop:
             stop_date = stop
 
         predicate = '_measurement="{}" and type="{}"'.format(measurement, type_tag)
-
 
         delete_api.delete(start_date, stop_date, predicate, bucket=bucket, org=self.org)
 
