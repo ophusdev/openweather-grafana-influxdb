@@ -1,6 +1,6 @@
 requests==2.25.1
 influxdb==5.3.1
-flask==1.1.2
+flask==2.3.2
 apscheduler==3.7.0
 influxdb-client==1.24.0
 Flask-Testing
